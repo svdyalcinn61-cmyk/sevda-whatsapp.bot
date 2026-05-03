@@ -35,13 +35,15 @@ app.post("/webhook", async (req, res) => {
   console.log("Webhook query:", req.query);
   console.log("Webhook body:", req.body);
 
-  const incoming = req.body?.message || req.body?.messages?.[0] || req.body;
-  const senderId = incoming?.from || incoming?.sender?.id || incoming?.sender?.wa_id || req.body?.from || req.body?.sender;
-  const incomingText = incoming?.text?.body || incoming?.text || incoming?.body || incoming?.message?.text || incoming?.message?.body || "";
+  const messageData = req.body?.data?.messages;
+  const senderId = messageData?.remoteJid;
+  const incomingText = messageData?.messageBody;
+  const pushName = messageData?.pushName;
 
   console.log("Gelen WhatsApp mesajı tespit edildi:", {
     senderId,
     incomingText,
+    pushName,
   });
 
   const replyText = "Merhaba, mesajınızı aldık. Size en kısa sürede dönüş yapacağız.";
