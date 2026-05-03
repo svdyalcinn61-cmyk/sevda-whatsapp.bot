@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsApp Bot Dashboard</title>
+  <link rel="stylesheet" href="/dashboard.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WhatsApp Bot Dashboard</h1>
+      <p>Bot kontrol paneli ve basit günlük izleme ekranı.</p>
+    </header>
+
+    <section class="card status-card">
+      <h2>Bot Durumu</h2>
+      <div class="status-item"><strong>Bot aktif mi?</strong> <span id="botActive">Yükleniyor...</span></div>
+      <div class="status-item"><strong>Webhook durumu</strong> <span id="webhookStatus">Yükleniyor...</span></div>
+      <div class="status-item"><strong>Son webhook etkinliği</strong> <span id="lastWebhook">Yükleniyor...</span></div>
+    </section>
+
+    <section class="card split-card">
+      <div>
+        <h2>Son Gelen Mesajlar</h2>
+        <ul id="incomingList" class="log-list"></ul>
+      </div>
+      <div>
+        <h2>Son Gönderilen Cevaplar</h2>
+        <ul id="outgoingList" class="log-list"></ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Test Mesajı Gönder</h2>
+      <form id="testForm">
+        <label>Gönderici ID (to):</label>
+        <input type="text" id="testTo" placeholder="263...@lid" />
+
+        <label>Mesaj metni:</label>
+        <textarea id="testText" rows="3" placeholder="Test mesajını buraya yazın"></textarea>
+
+        <button type="submit">Gönder</button>
+      </form>
+      <div id="testResult" class="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Cevap Şablonları</h2>
+      <div class="template-list">
+        <button type="button" data-template="Merhaba, mesajınızı aldık. Size en kısa sürede dönüş yapacağız.">Varsayılan yanıt</button>
+        <button type="button" data-template="Talebinizi aldık. En kısa sürede bilgi vereceğiz.">Talep onayı</button>
+        <button type="button" data-template="Teşekkür ederiz, sorununuzu inceledikten sonra dönüş sağlayacağız.">Teşekkür mesajı</button>
+      </div>
+    </section>
+  </div>
+  <script src="/dashboard.js"></script>
+</body>
+</html>
