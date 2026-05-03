@@ -50,10 +50,8 @@ app.post("/webhook", async (req, res) => {
 
   if (senderId && process.env.WASENDER_API_URL && process.env.WASENDER_API_KEY) {
     const payload = {
-      api_key: process.env.WASENDER_API_KEY,
       to: senderId,
-      message: replyText,
-      // Wasender API uç noktası ve gövde yapısı, kullanımınıza göre uyarlanabilir.
+      text: replyText,
     };
 
     try {
