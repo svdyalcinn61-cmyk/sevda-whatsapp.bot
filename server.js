@@ -123,7 +123,7 @@ app.post("/webhook", async (req, res) => {
     pushName,
   });
 
-  const replyText = "Merhaba, mesajınızı aldık. Size en kısa sürede dönüş yapacağız.";
+ const replyText = "Merhaba, TrustCo Company’ye hoş geldiniz. Marka yönetimi, nöropazarlama, dijital pazarlama ve iletişim stratejileri alanlarında size doğru yönlendirme yapabilmemiz için hangi konuda destek aradığınızı öğrenebilir miyim?";
 
   if (senderId && process.env.WASENDER_API_URL && process.env.WASENDER_API_KEY) {
     const payload = {
