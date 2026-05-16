@@ -123,7 +123,62 @@ app.post("/webhook", async (req, res) => {
     pushName,
   });
 
- const replyText = "Merhaba, TrustCo Company’ye hoş geldiniz. Marka yönetimi, nöropazarlama, dijital pazarlama ve iletişim stratejileri alanlarında size doğru yönlendirme yapabilmemiz için hangi konuda destek aradığınızı öğrenebilir miyim?";
+ let replyText = "Merhaba, TrustCo Company’ye hoş geldiniz. Marka yönetimi, nöropazarlama, dijital pazarlama ve iletişim stratejileri alanlarında size doğru yönlendirme yapabilmemiz için hangi konuda destek aradığınızı öğrenebilir miyim?";
+
+if (incomingText) {
+  const lowerText = incomingText.toLowerCase();
+
+  if (
+    lowerText.includes("fiyat") ||
+    lowerText.includes("ücret") ||
+    lowerText.includes("ucret") ||
+    lowerText.includes("paket") ||
+    lowerText.includes("ne kadar") ||
+    lowerText.includes("kaç para") ||
+    lowerText.includes("kac para") ||
+    lowerText.includes("ödeme") ||
+    lowerText.includes("odeme")
+  ) {
+    replyText = "Fiyatlandırma, markanın hedefi, sektörü ve ihtiyaç duyduğu stratejik kapsama göre değişiyor. Bu yüzden doğrudan standart bir fiyat paylaşmak yerine önce ihtiyacı doğru analiz etmeyi tercih ediyoruz. Hangi hizmet alanı için bilgi almak istiyorsunuz?";
+  } else if (
+    lowerText.includes("randevu") ||
+    lowerText.includes("görüşme") ||
+    lowerText.includes("gorusme") ||
+    lowerText.includes("zoom") ||
+    lowerText.includes("toplantı") ||
+    lowerText.includes("toplanti") ||
+    lowerText.includes("aramak") ||
+    lowerText.includes("beni arayın") ||
+    lowerText.includes("beni arayin") ||
+    lowerText.includes("konuşalım") ||
+    lowerText.includes("konusalim")
+  ) {
+    replyText = "Elbette, birebir strateji görüşmesiyle ilerlemek en doğru yöntem olur. Size uygun günü ve saati seçebilmeniz için takvim bağlantımızı paylaşacağım. Öncesinde markanızın hangi alanda destek aradığını kısaca öğrenebilir miyim?";
+  } else if (
+    lowerText.includes("sosyal medya") ||
+    lowerText.includes("instagram") ||
+    lowerText.includes("reklam") ||
+    lowerText.includes("marka yönetimi") ||
+    lowerText.includes("marka yonetimi") ||
+    lowerText.includes("dijital pazarlama") ||
+    lowerText.includes("nöropazarlama") ||
+    lowerText.includes("noropazarlama") ||
+    lowerText.includes("içerik") ||
+    lowerText.includes("icerik")
+  ) {
+    replyText = "Anladım. Bu alanda doğru yönlendirme yapabilmemiz için önce hedefi netleştirmek önemli. Önceliğiniz görünürlüğü artırmak mı, güven veren bir marka algısı oluşturmak mı, yoksa satışa dönüşümü güçlendirmek mi?";
+  } else if (
+    lowerText.includes("merhaba") ||
+    lowerText.includes("selam") ||
+    lowerText.includes("iyi günler") ||
+    lowerText.includes("iyi gunler") ||
+    lowerText.includes("bilgi almak istiyorum")
+  ) {
+    replyText = "Merhaba, TrustCo Company’ye hoş geldiniz. Marka yönetimi, nöropazarlama, dijital pazarlama ve iletişim stratejileri alanlarında size doğru yönlendirme yapabilmemiz için hangi konuda destek aradığınızı öğrenebilir miyim?";
+  } else {
+    replyText = "Sizi doğru yönlendirebilmem için ihtiyacınızı biraz daha netleştirelim. Marka yönetimi, dijital pazarlama, sosyal medya stratejisi veya nöropazarlama tarafında mı destek arıyorsunuz?";
+  }
+}
 
   if (senderId && process.env.WASENDER_API_URL && process.env.WASENDER_API_KEY) {
     const payload = {
